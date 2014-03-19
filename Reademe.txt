@@ -1,0 +1,12 @@
+1) web Service Client : Add Generated Web Client in Project and give build path of the folder
+
+	WEB-INF	
+		lib
+			WBLocalClient.jar (Generated using LocalClient java project)
+			
+			
+2) Tomcat Server : Add same file in Tomcat Dir
+
+	Tomcat
+		lib
+			WBLocalClient.jar (Same file added in Project)
