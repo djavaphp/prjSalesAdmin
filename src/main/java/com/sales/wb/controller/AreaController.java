@@ -18,13 +18,13 @@ import com.sales.wb.form.AreaForm;
 import com.sales.wb.service.AreaVO;
 
 import com.sales.wb.service.Resp;
-
-
+/*
+ * @author : Kruti Jani
+ */
 
 @Controller
 public class AreaController {
-	private static final Logger log = Logger.getLogger(AreaController.class);
-	
+	private static final Logger log = Logger.getLogger(AreaController.class);	
 	
 	@RequestMapping(value = "/area", method = RequestMethod.GET)
 	   public ModelAndView callArea() {
