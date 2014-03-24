@@ -7,7 +7,7 @@
 <body>
 
 	<table>
-		<form:form method="POST" action="createarea">
+		<form:form method="POST" action="createarea" >
 			<tr>			
 				<td><form:label path="areaCode"> Area Code :</form:label></td>
 				<td><form:input path="areaCode" /></td>

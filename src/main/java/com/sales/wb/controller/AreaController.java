@@ -29,7 +29,7 @@ public class AreaController {
 	@RequestMapping(value = "/area", method = RequestMethod.GET)
 	   public ModelAndView callArea() {
 		log.info("======== Inside callArea ======");
-		log.info( ServiceMaster.getMasterService().helloworld() );
+		
 	      return new ModelAndView("addArea", "command", new AreaForm());
 	   }
 	
@@ -40,8 +40,7 @@ public class AreaController {
 		log.info(areaform.getAreaName());
 		AreaVO vo = new AreaVO();
 		vo.setAreaCode(areaform.getAreaCode());
-		vo.setAreaName(areaform.getAreaName());
-		  System.out.println( ServiceMaster.getMasterService().helloworld() );
+		vo.setAreaName(areaform.getAreaName());		
 		  Resp resp = ServiceMaster.getMasterService().createArea(vo);
 		  if(resp.getRespCode().value().equalsIgnoreCase(WebConstrains.SUCCESS)){
 			  log.info(resp.getRespMsg().toString());

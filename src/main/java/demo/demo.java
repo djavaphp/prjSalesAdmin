@@ -9,7 +9,7 @@ public class demo {
 		/*stub genrated from MasterServiceImpservice. to use Apache Cxf. Select Project -> Properties 
 		-> Project Facate -> select cxf , dynamic web  and , java -> choose server.
         */		 
-	  System.out.println(  ServiceMaster.getMasterService().helloworld() );
+	 // System.out.println(  ServiceMaster.getMasterService().helloworld() );
 	  GetAllBillBookDtlResp resp = ServiceMaster.getMasterService().getAllBillBookdtl();
 	  System.out.println(resp.getBillBookList().size());
 	  System.out.println(resp.getResp().getRespMsg());
