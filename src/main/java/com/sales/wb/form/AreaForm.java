@@ -1,8 +1,5 @@
 package com.sales.wb.form;
 
-/*
- * @author : Kruti Jani
- */
 public class AreaForm {
 	private Long areaID;
 	private String areaCode;
