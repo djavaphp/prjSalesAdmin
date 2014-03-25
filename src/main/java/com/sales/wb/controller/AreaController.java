@@ -28,8 +28,7 @@ public class AreaController {
 	
 	@RequestMapping(value = "/area", method = RequestMethod.GET)
 	   public ModelAndView callArea() {
-		log.info("======== Inside callArea ======");
-		
+		log.info("======== Inside callArea ======");		
 	      return new ModelAndView("addArea", "command", new AreaForm());
 	   }
 	

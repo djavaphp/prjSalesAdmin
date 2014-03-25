@@ -1,11 +1,13 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
 <title>Login</title>
+<link href="<c:url value="/resources/css/sales.css" />" rel="stylesheet" type="text/css" media="screen" />
 </head>
 <body>
-	<form:form id="login" action="login" method="POST" commandName="loginform"
-		>
+ <div id="main">
+	<form:form id="login" action="login" method="POST" commandName="loginform">
 		<table align="center">
 			<tr>
 				<td colspan="3"><h3> Login</h3></td>
@@ -30,5 +32,6 @@
 			</tr>
 		</table>
 	</form:form>
+	</div>
 </body>
 </html>

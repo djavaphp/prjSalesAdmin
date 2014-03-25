@@ -73,7 +73,8 @@ public class LoginController {
             	log.info("++ Resp form Service : "+ resp.getRespMsg());
                 if(resp.getRespCode().value().equalsIgnoreCase(WebConstrains.SUCCESS)){
                 	//put login details into session
-                    request.getSession().setAttribute("login", loginform);
+                    request.getSession().setAttribute("usename", loginform.getEmpCode());
+                  
                     //Creating a redirection view to success page. This will redirect to UsersController
                     RedirectView redirectView = new RedirectView("welcome", true);
                     return new ModelAndView(redirectView);
