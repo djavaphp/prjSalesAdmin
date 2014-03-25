@@ -95,7 +95,7 @@ public class LoginController {
      */
     @RequestMapping(value = "/welcome",method = RequestMethod.GET)
     public ModelAndView callWelcome() {  
-    	log.info("======== Inside login INIT ======");
+    	log.info("======== Inside Welcome ======");
         return new ModelAndView("welcome", "", "");
     }
     
