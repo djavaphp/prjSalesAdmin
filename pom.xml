@@ -9,7 +9,8 @@
   <url>http://maven.apache.org</url>
   <properties>
 		<org.springframework.version>3.0.5.RELEASE</org.springframework.version>
-		<log4j.version>1.2.9</log4j.version>		
+		<log4j.version>1.2.9</log4j.version>	
+		<jackson.version>20090211</jackson.version>	
 	</properties>
   <dependencies>
    <!-- Spring Core Library -->
@@ -76,6 +77,21 @@
 			<artifactId>servlet-api</artifactId>
 			<version>2.5</version>
 		</dependency>
+		<!-- Data Mapper package is a high-performance data binding package built 
+		on Jackson JSON processor -->
+		<dependency>
+	<groupId>org.json</groupId>
+	<artifactId>json</artifactId>
+	<version>20090211</version>
+</dependency>
+ <dependency>
+        <groupId>net.sf.json-lib</groupId>
+        <artifactId>json-lib</artifactId>
+        <version>2.4</version>
+        <classifier>jdk15</classifier>
+    </dependency>
+            
+	
   </dependencies>
   <build>
     <finalName>prjSalesAdmin</finalName>
