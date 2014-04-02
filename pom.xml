@@ -8,7 +8,7 @@
   <name>prjSalesAdmin Maven Webapp</name>
   <url>http://maven.apache.org</url>
   <properties>
-		<org.springframework.version>3.0.5.RELEASE</org.springframework.version>
+		<org.springframework.version>3.1.2.RELEASE</org.springframework.version>
 		<log4j.version>1.2.9</log4j.version>	
 		<jackson.version>20090211</jackson.version>	
 	</properties>

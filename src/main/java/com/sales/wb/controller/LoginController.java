@@ -75,7 +75,7 @@ public class LoginController {
                 	//put login details into session
                     request.getSession().setAttribute("usename", loginform.getEmpCode());
                   
-                    //Creating a redirection view to success page. This will redirect to UsersController
+                    //Creating a redirection view to success page. This will redirect to callWelcome
                     RedirectView redirectView = new RedirectView("welcome", true);
                     return new ModelAndView(redirectView);
                 }else{

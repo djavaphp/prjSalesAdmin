@@ -23,10 +23,9 @@
 		   	colNames:['Id', 'Area Code', 'Area Name'],
 		   	colModel:[
 		   		{name:'id',index:'id', width:55, editable:false, editoptions:{readonly:true, size:10},hidden:true},
-		   		{name:'areaCode',index:'areaCode', width:100, editable:true, editrules:{required:true}, editoptions:{size:10}},
-		   		{name:'areaName',index:'areaName', width:100, editable:true, editrules:{required:true}, editoptions:{size:10}}		   		
-		   	],
-		   	//postData: {},
+		   		{name:'acode',index:'acode', width:100, editable:true, editrules:{required:true}, editoptions:{size:10}},
+		   		{name:'aname',index:'aname', width:100, editable:true, editrules:{required:true}, editoptions:{size:10}}		   		
+		   	],		  
 			rowNum:10,
 			multiselect:true,
 		   	rowList:[10,20,40,60],
@@ -40,232 +39,47 @@
 		    caption:"Records",
 		    emptyrecords: "Empty records",
 		    loadonce: true,
-		   /*  loadComplete: function() {},
-		    jsonReader : {
-		        root: "rows",
-		        page: "page",
-		        total: "total",
-		        records: "records",
-		        repeatitems: false,
-		        cell: "cell",
-		        id: "id"
-		    } */
-		});
-
-		$("#grid").jqGrid('navGrid','#pager',
-				{edit:false, add:false, del:false, search:true},
-				{}, {}, {}, 
-				{ 	// search
-					sopt:['cn', 'eq', 'ne', 'lt', 'gt', 'bw', 'ew'],
-					closeOnEscape: true, 
-					multipleSearch: true, 
-					closeAfterSearch: true
-				}
-		);
-		
-		$("#grid").navButtonAdd('#pager',
-				{ 	caption:"Add", 
-					buttonicon:"ui-icon-plus", 
-					onClickButton: addRow,
-					position: "last", 
-					title:"", 
-					cursor: "pointer"
-				} 
-		);
-		
-		$("#grid").navButtonAdd('#pager',
-				{ 	caption:"Edit", 
-					buttonicon:"ui-icon-pencil", 
-					onClickButton: editRow,
-					position: "last", 
-					title:"", 
-					cursor: "pointer"
-				} 
-		);
-		
-		$("#grid").navButtonAdd('#pager',
-			{ 	caption:"Delete", 
-				buttonicon:"ui-icon-trash", 
-				onClickButton: deleteRow,
-				position: "last", 
-				title:"", 
-				cursor: "pointer"
-			} 
-		);
-
+		    onSelectRow: function (id) {
+		    	 var gridRow = $(this).getRowData(id);		         
+		    	var code=gridRow["acode"];
+		    	var areaname=gridRow["aname"];
+		      $("#areaID").val(id);
+		      $("#areaCode").val(code);
+		      $("#areaName").val(areaname);
+		    },		  
+		}).navGrid('#pager',{edit:false,add:false,del:false,search:false})	;
+		/* .navGrid('#pager',{edit:false,add:false,del:false,search:false})	
+			.navButtonAdd('#pager',{
+			   caption:"Del", 
+			   buttonicon:"ui-icon-trash",
+			   url: 'xxx.xxx/product/DeleteProduct?productId=',
+			   onClickButton: function(){
+				   
+			   		// Get the currently selected row
+					var row = $('#grid').jqGrid('getGridParam','selrow');
+					if( row != null ){
+						//alert(row);
+						
+					}else {
+						$('#msgbox').text('You must select a record first!');
+						$('#msgbox').dialog(
+						{ 	title: 'Error',
+							modal: true,
+							buttons: {"Ok": function() {
+								$(this).dialog("close");}
+							}
+						});
+					}
+			   }, 
+			   position:"last",
+			   reloadAfterSubmit: true,
+	            closeOnEscape: true
+			});
+ */
 		// Toolbar Search
-		$("#grid").jqGrid('filterToolbar',{stringResult: true,searchOnEnter : true, defaultSearch:"cn"});
+		$("#grid").jqGrid('filterToolbar',{stringResult: true,searchOnEnter : true, defaultSearch:"cn"}); 
 	});
-
-	function addRow() {
-   		/* $("#grid").jqGrid('setColProp', 'empCode', {editoptions:{readonly:false, size:10}});   	
-   		$("#grid").jqGrid('setColProp', 'empName', {editrules:{required:true}}); */
-   		
-		// Get the currently selected row
-		$('#grid').jqGrid('editGridRow','new',
-	    		{ 	url: 'createarea', 
-					editData: {},
-	                serializeEditData: function(data){ 
-	                    data.id = 0; 
-	                    return $.param(data);
-	                },
-				    recreateForm: true,
-				    beforeShowForm: function(form) {
-			            $('#pData').hide();  
-			            $('#nData').hide();
-			            $('#empName',form).addClass('ui-widget-content').addClass('ui-corner-all');
-				    },
-					beforeInitData: function(form) {},
-					closeAfterAdd: true,
-					reloadAfterSubmit:true,
-					afterSubmit : function(response, postdata) 
-					{ 
-				        var result = eval('(' + response.responseText + ')');
-						var errors = "";
-						
-				        if (result.success == false) {
-							for (var i = 0; i < result.message.length; i++) {
-								errors +=  result.message[i] + "<br/>";
-							}
-				        }  else {
-				        	$('#msgbox').text('Entry has been added successfully');
-							$('#msgbox').dialog( 
-									{	title: 'Success',
-										modal: true,
-										buttons: {"Ok": function()  {
-											$(this).dialog("close");} 
-										}
-									});
-		                }
-				    	// only used for adding new records
-				    	var newId = null;
-				    	
-						return [result.success, errors, newId];
-					}
-	    		});
-
-   		$("#grid").jqGrid('setColProp', 'password', {hidden: true});
-	} // end of addRow
-
-
-	function editRow() {
-   		$("#grid").jqGrid('setColProp', 'username', {editoptions:{readonly:true, size:10}});
-   		$("#grid").jqGrid('setColProp', 'password', {hidden: true});
-   		$("#grid").jqGrid('setColProp', 'password', {editrules:{required:false}});
-   		
-		// Get the currently selected row
-		var row = $('#grid').jqGrid('getGridParam','selrow');
 		
-		if( row != null ) {
-		
-			$('#grid').jqGrid('editGridRow', row,
-				{	url: '${editUrl}', 
-					editData: {},
-			        recreateForm: true,
-			        beforeShowForm: function(form) {
-			            $('#pData').hide();  
-			            $('#nData').hide();
-			        },
-					beforeInitData: function(form) {},
-					closeAfterEdit: true,
-					reloadAfterSubmit:true,
-					afterSubmit : function(response, postdata) 
-					{ 
-			            var result = eval('(' + response.responseText + ')');
-						var errors = "";
-						
-			            if (result.success == false) {
-							for (var i = 0; i < result.message.length; i++) {
-								errors +=  result.message[i] + "<br/>";
-							}
-			            }  else {
-			            	$('#msgbox').text('Entry has been edited successfully');
-							$('#msgbox').dialog( 
-									{	title: 'Success',
-										modal: true,
-										buttons: {"Ok": function()  {
-											$(this).dialog("close");} 
-										}
-									});
-		                }
-				    	// only used for adding new records
-				    	var newId = null;
-			        	
-						return [result.success, errors, newId];
-					}
-				});
-		} else {
-			$('#msgbox').text('You must select a record first!');
-			$('#msgbox').dialog( 
-					{	title: 'Error',
-						modal: true,
-						buttons: {"Ok": function()  {
-							$(this).dialog("close");} 
-						}
-					});
-		}
-	}
-	
-	function deleteRow() {
-		// Get the currently selected row
-	    var row = $('#grid').jqGrid('getGridParam','selrow');
-
-	    // A pop-up dialog will appear to confirm the selected action
-		if( row != null ) 
-			$('#grid').jqGrid( 'delGridRow', row,
-	          	{	url:'${deleteUrl}', 
-					recreateForm: true,
-				    beforeShowForm: function(form) {
-				    	//Change title
-				        $(".delmsg").replaceWith('<span style="white-space: pre;">' +
-				        		'Delete selected record?' + '</span>');
-		            	//hide arrows
-				        $('#pData').hide();  
-				        $('#nData').hide();
-				    },
-	          		reloadAfterSubmit:true,
-	          		closeAfterDelete: true,
-	          		serializeDelData: function (postdata) {
-		          	      var rowdata = $('#grid').getRowData(postdata.id);
-		          	      // append postdata with any information 
-		          	      return {id: postdata.id, oper: postdata.oper, username: rowdata.username};
-		          	},
-	          		afterSubmit : function(response, postdata) 
-					{ 
-			            var result = eval('(' + response.responseText + ')');
-						var errors = "";
-						
-			            if (result.success == false) {
-							for (var i = 0; i < result.message.length; i++) {
-								errors +=  result.message[i] + "<br/>";
-							}
-			            }  else {
-			            	$('#msgbox').text('Entry has been deleted successfully');
-							$('#msgbox').dialog( 
-									{	title: 'Success',
-										modal: true,
-										buttons: {"Ok": function()  {
-											$(this).dialog("close");} 
-										}
-									});
-		                }
-				    	// only used for adding new records
-				    	var newId = null;
-			        	
-						return [result.success, errors, newId];
-					}
-	          	});
-		else {
-			$('#msgbox').text('You must select a record first!');
-			$('#msgbox').dialog( 
-					{	title: 'Error',
-						modal: true,
-						buttons: {"Ok": function()  {
-							$(this).dialog("close");} 
-						}
-					});
-		}
-	}
 	</script>
 </head>
 <body>
@@ -286,11 +100,19 @@
 					</table>
 					<table width="100%">
 						<tr>
-						<%-- 	<td>
+							<td>
 								<fieldset>
 									<legend>Add Area</legend>
-									<table align="center">
-										<form:form method="POST" action="createarea">
+									<table align="center">	
+									<form:form method="POST" action="createarea" modelAttribute="areaform">
+										<input type="hidden" id="areaID" name="areaID"/>	
+											<tr>
+												<td colspan="3" align="center"><font color="green">${message}</font></td>
+											</tr>
+										
+											<tr>
+												<td colspan="3" align="center"><font color="red"><form:errors /></font></td>
+											</tr>
 											<tr>
 												<td><form:label path="areaCode"> Area Code :</form:label></td>
 												<td><form:input path="areaCode" /></td>
@@ -300,14 +122,16 @@
 												<td><form:input path="areaName" /></td>
 											</tr>
 											<tr>
-												<td colspan="2" align="center"><input type="submit" value="Add Area" /></td>
+												<td colspan="2" align="center"><input type="submit" id="btnAreaSubmit"
+													value="Add Area" /></td>
 											</tr>
-										</form:form>
+											</form:form>										
 									</table>
 								</fieldset>
 							</td>
-							<td></td> --%>
-							<td>
+						</tr>
+						<tr>
+						<td>
 								<fieldset>
 									<legend>View Area Detail</legend>
 									<div id='jqgrid'>
@@ -318,7 +142,7 @@
 									<div id='msgbox' title='' style='display: none'></div>
 								</fieldset>
 							</td>
-						</tr>						
+						</tr>
 					</table>
 				</div>
 			</div>

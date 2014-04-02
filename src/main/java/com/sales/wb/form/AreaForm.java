@@ -1,7 +1,7 @@
 package com.sales.wb.form;
 
 public class AreaForm {
-	private Long areaID;
+	private String areaID;
 	private String areaCode;
 	private String areaName;
 	/**
@@ -9,17 +9,17 @@ public class AreaForm {
 	 * @param areaCode
 	 * @param areaName
 	 */
-	public AreaForm(Long areaID, String areaCode, String areaName) {
+	public AreaForm(String areaID, String areaCode, String areaName) {
 		this.areaID = areaID;
 		this.areaCode = areaCode;
 		this.areaName = areaName;
 	}	
 	public AreaForm() {
 	}
-	public Long getAreaID() {
+	public String getAreaID() {
 		return areaID;
 	}
-	public void setAreaID(Long areaID) {
+	public void setAreaID(String areaID) {
 		this.areaID = areaID;
 	}
 	public String getAreaCode() {
