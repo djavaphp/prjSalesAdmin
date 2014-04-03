@@ -15,8 +15,8 @@ import com.sales.wb.service.GetCompanyResp;
  *
  */
 @Controller
-public class CommonController {
-	private static final Logger log = Logger.getLogger(CommonController.class);
+public class CommonMasterController {
+	private static final Logger log = Logger.getLogger(CommonMasterController.class);
 	
 	@RequestMapping(value = "company", method = RequestMethod.GET)
 	   public ModelAndView callcompany() {
