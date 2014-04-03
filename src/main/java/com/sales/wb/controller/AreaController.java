@@ -119,8 +119,7 @@ public class AreaController {
 				 resp = ServiceMaster.getMasterService().createArea(vo);
 			}
 		  if(resp.getRespCode().value().equalsIgnoreCase(WebConstrains.SUCCESS)){
-			  log.info("-- Success : "+resp.getRespMsg().toString());
-			 
+			  log.info("-- Success : "+resp.getRespMsg().toString());			 
 			  ModelAndView modelAndView = new ModelAndView("/master/addArea");
 			  modelAndView.addObject("message", resp.getRespMsg().toString());
               return modelAndView;              
