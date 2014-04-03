@@ -6,7 +6,7 @@
 	  <h3>Masters</h3>
                 <ul class="nav">
                     <li><a href="area">Area Master</a></li>
-                    <li><a href="">Company Master</a></li>
+                    <li><a href="company">Company Master</a></li>
                     <li><a href="#">Employee Master</a></li>
                     <li><a href="billbook">Bill Book Master</a></li>
                     <li><a href="#">Retailer Master</a></li>
