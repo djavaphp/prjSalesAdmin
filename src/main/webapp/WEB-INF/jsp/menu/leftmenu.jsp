@@ -11,7 +11,7 @@
                     <li><a href="billbook">Bill Book Master</a></li>
                     <li><a href="#">Retailer Master</a></li>
                     <li><a href="#">Item Master</a></li>
-                    <li><a href="#">Payment Types</a></li>
+                    <li><a href="payment">Payment Types</a></li>
                 </ul>
                 <h3>Masters</h3>
                 <a href="#" class="link">Link here</a>
